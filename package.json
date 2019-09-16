@@ -1,0 +1,27 @@
+{
+  "name": "instarem-uicomponents-react-native",
+  "version": "1.0.1",
+  "description": "tyuiop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "instarem"
+  ],
+  "author": "Instarem",
+  "license": "ISC",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.51.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react-native-linear-gradient": "2.5.4",
+    "react-native-snap-carousel": "3.8.0",
+    "react-native-material-textfield": "0.12.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react-native-linear-gradient": "2.5.4"
+  }
+}
