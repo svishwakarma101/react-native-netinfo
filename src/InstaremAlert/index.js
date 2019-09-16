@@ -19,7 +19,7 @@ import { BUTTON_TYPES, BUTTON_SHAPES } from '../utils/Constants';
 import { Colors, Fonts, FontSize } from '../utils/InstaremStyleSheet';
 import InstaremButton from '../InstaremButton';
 import cancelImage from '../../assets/images/button/cancelIcon.png';
-import AnimatedCircleWithTick from '../../components/common/AnimatedCircleWithTick';
+import InstaremCircleWithTick from '../InstaremCircleWithTick';
 
 export default class InstaremAlert extends Component {
   static proptypes = {
@@ -90,7 +90,7 @@ export default class InstaremAlert extends Component {
       );
     } else {
       return (
-        <AnimatedCircleWithTick
+        <InstaremCircleWithTick
           value={this._animatedValue}
           size={'small'}
           unfilledColor='transparent'
