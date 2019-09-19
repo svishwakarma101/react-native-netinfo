@@ -25,6 +25,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 export default class InstaremButton extends Component {
   static propTypes = {
+    theme: PropTypes.object,
     disabled: PropTypes.bool,
     buttonType: PropTypes.oneOf(Object.keys(BUTTON_TYPES)),
     buttonShape: PropTypes.oneOf(Object.keys(BUTTON_SHAPES)),
@@ -34,6 +35,10 @@ export default class InstaremButton extends Component {
     gradientStyle: PropTypes.shape({
       ...ViewPropTypes.style
     })
+  };
+
+  static defaultProps = {
+    theme: Theme
   };
 
   constructor(props) {
@@ -103,19 +108,21 @@ export default class InstaremButton extends Component {
   }
 
   getThemeForButtonType() {
+    let { theme } = this.props;
     if (this.state.buttonType === BUTTON_TYPES.primary) {
-      return Theme.PrimaryButton;
+      return theme.PrimaryButton;
     } else if (this.state.buttonType === BUTTON_TYPES.secondary) {
-      return Theme.SecondaryButton;
+      return theme.SecondaryButton;
     } else if (this.state.buttonType === BUTTON_TYPES.disabled) {
-      return Theme.DisabledButton;
+      return theme.DisabledButton;
     } else if (this.state.buttonType === BUTTON_TYPES.gradient) {
-      return Theme.GradientButton;
+      return theme.GradientButton;
     }
-    return Theme.DefaultButton;
+    return theme.DefaultButton;
   }
 
   getGradientButton(buttonAttributes) {
+    let { theme } = this.props;
     const { buttonStyle, buttonShape, textColor } = buttonAttributes;
     return (
       <TouchableOpacity
@@ -132,9 +139,9 @@ export default class InstaremButton extends Component {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           colors={[
-            Theme.GradientButton.backgroundColorGradientStart,
-            Theme.GradientButton.backgroundColorGradientMid,
-            Theme.GradientButton.backgroundColorGradientEnd
+            theme.GradientButton.backgroundColorGradientStart,
+            theme.GradientButton.backgroundColorGradientMid,
+            theme.GradientButton.backgroundColorGradientEnd
           ]}
           style={[
             buttonStyle,

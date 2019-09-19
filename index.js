@@ -1,4 +1,4 @@
-import InstaremTextField from './src/InstaremTextField/InstaremTextField';
+import InstaremTextField from './src/InstaremTextField';
 import InstaremSwiper from './src/InstaremSwiper';
 import InstaremButton from './src/InstaremButton';
 import InstaremCircleWithTick from './src/InstaremCircleWithTick';

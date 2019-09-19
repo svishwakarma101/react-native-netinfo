@@ -230,6 +230,13 @@ export const Themes = {
       underLineColorFocus: Colors.blueGrayBorderLight,
       placeholderTextColor: Colors.blueGray,
       textColor: Colors.instaremDenimBlue
+    },
+    Alert: {
+      textColor: Colors.blueGradientMid,
+      backgroundColor: Colors.transparent,
+      primaryTickColor: Colors.blueGradientMid,
+      secondaryTickColor: Colors.blueGradientMid,
+      secondaryTickBackgroundColor: Colors.blueGradientMid
     }
   },
 
@@ -300,6 +307,13 @@ export const Themes = {
       underLineColorFocus: Colors.blueGrayBorderLight,
       placeholderTextColor: Colors.blueGray,
       textColor: Colors.blueGradientMid
+    },
+    Alert: {
+      textColor: Colors.blueGradientMid,
+      backgroundColor: Colors.transparent,
+      primaryTickColor: Colors.blueGradientMid,
+      secondaryTickColor: Colors.blueGradientMid,
+      secondaryTickBackgroundColor: Colors.blueGradientMid
     }
   }
 };

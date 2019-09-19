@@ -8,6 +8,9 @@ import { Colors } from '../utils/InstaremStyleSheet';
 
 export default class InstaremCircleWithTick extends Component {
   static propTypes = {
+    isPrimary: PropTypes.bool,
+    isBorderRequired: PropTypes.bool,
+    backgroundColor: PropTypes.string,
     duration: PropTypes.number,
     size: PropTypes.string,
     thickness: PropTypes.number,
@@ -17,6 +20,7 @@ export default class InstaremCircleWithTick extends Component {
   };
 
   static defaultProps = {
+    isPrimary: true,
     duration: 650,
     size: CIRCLE_SIZES.small,
     thickness: 2,

@@ -15,7 +15,11 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import renderIf from '../utils/InstaremRenderIf';
-import { BUTTON_TYPES, BUTTON_SHAPES } from '../utils/Constants';
+import {
+  BUTTON_TYPES,
+  BUTTON_SHAPES,
+  APPLIED_THEME as Theme
+} from '../utils/Constants';
 import { Colors, Fonts, FontSize } from '../utils/InstaremStyleSheet';
 import InstaremButton from '../InstaremButton';
 import cancelImage from '../../assets/images/button/cancelIcon.png';
@@ -23,7 +27,11 @@ import InstaremCircleWithTick from '../InstaremCircleWithTick';
 
 export default class InstaremAlert extends Component {
   static proptypes = {
+    theme: PropTypes.object,
     isIconRequired: PropTypes.bool,
+    isIconPrimary: PropTypes.bool,
+    headerIconColor: PropTypes.string,
+    headerIconBackgroundColor: PropTypes.string,
     headerIconImage: PropTypes.string,
     headerIconStyle: PropTypes.shape({
       ...ViewPropTypes.style
@@ -54,6 +62,8 @@ export default class InstaremAlert extends Component {
   };
 
   static defaultProps = {
+    theme: Theme,
+    isIconPrimary: true,
     primaryButtonType: BUTTON_TYPES.gradient,
     primaryButtonShape: BUTTON_SHAPES.rounded,
     secondaryButtonType: BUTTON_TYPES.gradient,
@@ -70,7 +80,7 @@ export default class InstaremAlert extends Component {
   }
 
   startAnimation() {
-    const animation = Animated.timing(this._animatedValue, {
+    Animated.timing(this._animatedValue, {
       duration: 650,
       easing: Easing.linear,
       useNativeDriver: false,
@@ -80,6 +90,12 @@ export default class InstaremAlert extends Component {
   }
 
   headerIcon = () => {
+    let {
+      isIconPrimary,
+      headerIconColor,
+      headerIconBackgroundColor,
+      theme
+    } = this.props;
     if (this.props.headerIconImage) {
       return (
         <Image
@@ -91,9 +107,20 @@ export default class InstaremAlert extends Component {
     } else {
       return (
         <InstaremCircleWithTick
+          {...this.props}
+          color={
+            headerIconColor || isIconPrimary
+              ? theme.Alert.primaryTickColor
+              : theme.Alert.secondaryTickColor
+          }
+          isPrimary={isIconPrimary}
+          backgroundColor={
+            headerIconBackgroundColor ||
+            theme.Alert.secondaryTickBackgroundColor
+          }
           value={this._animatedValue}
           size={'small'}
-          unfilledColor='transparent'
+          unfilledColor={'transparent'}
           animationConfig={{ speed: 4 }}
         />
       );
@@ -102,6 +129,7 @@ export default class InstaremAlert extends Component {
 
   render() {
     const {
+      theme,
       title,
       titleStyle,
       description,
@@ -144,7 +172,11 @@ export default class InstaremAlert extends Component {
 
         <View style={styles.alertMessageContainer}>
           {renderIf(isIconRequired)(<View>{this.headerIcon()}</View>)}
-          <Text style={[styles.title, titleStyle]}>{title}</Text>
+          <Text
+            style={[styles.title, { color: theme.Alert.textColor }, titleStyle]}
+          >
+            {title}
+          </Text>
           <Text style={[styles.description, descriptionStyle]}>
             {description}
           </Text>
@@ -153,6 +185,7 @@ export default class InstaremAlert extends Component {
           <View style={styles.buttonContainer}>
             {renderIf(secondaryButtonTitle !== undefined)(
               <InstaremButton
+                theme={theme}
                 buttonType={secondaryButtonType}
                 buttonShape={secondaryButtonShape}
                 onPressIn={secondaryButtonAction}
@@ -167,6 +200,7 @@ export default class InstaremAlert extends Component {
             )}
 
             <InstaremButton
+              theme={theme}
               buttonType={primaryButtonType}
               buttonShape={primaryButtonShape}
               onPressIn={primaryButtonAction}

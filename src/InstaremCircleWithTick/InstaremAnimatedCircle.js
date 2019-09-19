@@ -6,10 +6,13 @@ import { CIRCLE_SIZES } from '../utils/Constants';
 
 export default class InstaremAnimatedCircle extends Component {
   static propTypes = {
+    isPrimary: PropTypes.bool,
+    isBorderRequired: PropTypes.bool,
     value: PropTypes.object,
     size: PropTypes.string,
     thickness: PropTypes.number,
     color: PropTypes.string,
+    backgroundColor: PropTypes.string,
     unfilledColor: PropTypes.string,
     style: PropTypes.shape({
       ...ViewPropTypes.style
@@ -19,6 +22,7 @@ export default class InstaremAnimatedCircle extends Component {
   };
 
   static defaultProps = {
+    isPrimary: true,
     value: {},
     size: CIRCLE_SIZES.medium,
     thickness: 2,
@@ -74,9 +78,23 @@ export default class InstaremAnimatedCircle extends Component {
   }
 
   render() {
-    const { thickness, unfilledColor, style, children } = this.props;
+    const {
+      isPrimary,
+      thickness,
+      unfilledColor,
+      style,
+      children,
+      backgroundColor
+    } = this.props;
     return (
-      <View style={[this.fullCircleStyle, styles.row, style]}>
+      <View
+        style={[
+          this.fullCircleStyle,
+          styles.row,
+          !isPrimary && { backgroundColor: backgroundColor },
+          style
+        ]}
+      >
         <View
           pointerEvents='box-none'
           style={[
@@ -151,7 +169,7 @@ export default class InstaremAnimatedCircle extends Component {
     }).start(this.props.onChangeAnimationEnd);
 
   renderHalfCircle = ({ isFlipped = false } = {}) => {
-    const { size, color, thickness, value, style } = this.props;
+    const { color, thickness, value, style } = this.props;
     const valueToInterpolate =
       value.constructor.name === 'AnimatedValue'
         ? value
@@ -190,7 +208,10 @@ export default class InstaremAnimatedCircle extends Component {
               style={{
                 ...this.fullCircleStyle,
                 borderWidth: thickness,
-                borderColor: color
+                borderColor:
+                  this.props.isBorderRequired || this.props.isPrimary
+                    ? color
+                    : 'transparent'
               }}
             />
           </View>

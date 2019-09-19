@@ -16,6 +16,7 @@ export default class InstaremSwiper extends Component {
   }
 
   static propTypes = {
+    theme: PropTypes.object,
     startingIndex: PropTypes.number,
     pageIndicator: PropTypes.element,
     pageIndicatorTintColor: PropTypes.string,
@@ -38,6 +39,7 @@ export default class InstaremSwiper extends Component {
   };
 
   static defaultProps = {
+    theme: Theme,
     startingIndex: 0,
     swiperWidth: deviceWidth,
     pageIndicator: null,
@@ -77,6 +79,7 @@ export default class InstaremSwiper extends Component {
 
   render() {
     const {
+      theme,
       startingIndex,
       pageIndicator,
       pageIndicatorTintColor,
@@ -133,12 +136,12 @@ export default class InstaremSwiper extends Component {
               dotElement={currentPageIndicator}
               dotColor={
                 currentPageIndicatorTintColor ||
-                Theme.Swiper.currentPageIndicatorTintColor
+                theme.Swiper.currentPageIndicatorTintColor
               }
               dotStyle={currentPageIndicatorStyle || styles.indicator}
               inactiveDotElement={pageIndicator}
               inactiveDotColor={
-                pageIndicatorTintColor || Theme.Swiper.pageIndicatorTintColor
+                pageIndicatorTintColor || theme.Swiper.pageIndicatorTintColor
               }
               inactiveDotStyle={pageIndicatorStyle || styles.indicator}
               inactiveDotOpacity={inactiveDotOpacity}

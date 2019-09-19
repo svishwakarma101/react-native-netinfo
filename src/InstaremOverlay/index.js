@@ -5,6 +5,7 @@ import { APPLIED_THEME as Theme } from '../utils/Constants';
 
 export default class InstaremOverlay extends Component {
   static propTypes = {
+    theme: PropTypes.object,
     overlayColor: PropTypes.string,
     shouldDismissOnTap: PropTypes.bool,
     dismiss: PropTypes.func,
@@ -12,7 +13,8 @@ export default class InstaremOverlay extends Component {
   };
 
   static defaultProps = {
-    delay: 0
+    delay: 0,
+    theme: Theme
   };
 
   constructor(props) {
@@ -41,7 +43,9 @@ export default class InstaremOverlay extends Component {
             styles.container,
             this.props.style,
             this.props.overlayColor && {
-              backgroundColor: this.props.overlayColor
+              backgroundColor:
+                this.props.overlayColor ||
+                this.props.theme.Overlay.backgroundColor
             }
           ]}
           activeOpacity={1}

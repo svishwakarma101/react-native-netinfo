@@ -22,6 +22,7 @@ import hideButton from '../../assets/images/button/hideIconGray.png';
 
 class InstaremTextField extends Component {
   static propTypes = {
+    theme: PropTypes.object,
     type: PropTypes.oneOf(TEXTFIELD_TYPES),
     shape: PropTypes.oneOf(TEXTFIELD_SHAPES),
     isFloating: PropTypes.bool,
@@ -36,6 +37,9 @@ class InstaremTextField extends Component {
     }),
     textColor: PropTypes.string,
     placeholder: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    borderColor: PropTypes.string,
+    underLineColor: PropTypes.string,
     placeholderColor: PropTypes.string,
     numberOfLines: PropTypes.number,
     multiline: PropTypes.bool,
@@ -70,6 +74,7 @@ class InstaremTextField extends Component {
   };
 
   static defaultProps = {
+    theme: Theme,
     type: TEXTFIELD_TYPES.default,
     shape: TEXTFIELD_SHAPES.rectangular,
     underlineType: TEXTFIELD_UNDERLINESTYLE.textMatch,
@@ -100,6 +105,7 @@ class InstaremTextField extends Component {
 
   render() {
     const {
+      theme,
       placeholder,
       placeholderColor,
       multiline,
@@ -128,10 +134,10 @@ class InstaremTextField extends Component {
               style={[styles.text, textStyle]}
               titleTextStyle={[styles.descriptionStyle, descriptionStyle]}
               label={isFloating ? placeholder || '' : null}
-              textColor={textColor || Theme.TextField.textColor}
-              tintColor={textColor || Theme.TextField.placeholderTextColor}
+              textColor={textColor || theme.TextField.textColor}
+              tintColor={textColor || theme.TextField.placeholderTextColor}
               baseColor={
-                placeholderColor || Theme.TextField.placeholderTextColor
+                placeholderColor || theme.TextField.placeholderTextColor
               }
               lineWidth={isTintedUnderlineRequired ? 0.2 : 0}
               activeLineWidth={isTintedUnderlineRequired ? 0.2 : 0}
@@ -221,7 +227,14 @@ class InstaremTextField extends Component {
       this.props.shape === TEXTFIELD_SHAPES.rounded
         ? styles.rounded
         : styles.rectangular,
-      this.props.containerStyle
+      this.props.containerStyle,
+      {
+        backgroundColor:
+          this.props.backgroundColor ||
+          this.props.theme.TextField.backgroundColor,
+        borderColor:
+          this.props.borderColor || this.props.theme.TextField.borderColor
+      }
     ]);
   };
 
@@ -232,13 +245,14 @@ class InstaremTextField extends Component {
     ) {
       const backgroundColor =
         this.props.autoFocus === false
-          ? Theme.TextField.underLineColor
-          : Theme.TextField.underLineColor;
+          ? this.props.theme.TextField.underLineColor
+          : this.props.theme.TextField.underLineColor;
       return (
         <View
           style={[
             styles.underline,
             { backgroundColor },
+            { backgroundColor: this.props.underLineColor },
             this.props.underlineStyle
           ]}
         />
