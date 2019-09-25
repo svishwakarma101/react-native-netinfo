@@ -80,7 +80,6 @@ class InstaremTextField extends Component {
     underlineType: TEXTFIELD_UNDERLINESTYLE.textMatch,
     numberOfLines: 1,
     isFloating: true,
-    // autoComplete: false,
     editable: true,
     autoCorrect: false,
     returnKeyType: 'done',
@@ -117,7 +116,10 @@ class InstaremTextField extends Component {
       descriptionMessage,
       errorMessage,
       descriptionStyle,
-      textStyle
+      textStyle,
+      labelPadding,
+      labelHeight,
+      inputContainerPadding
     } = this.props;
 
     let isTintedUnderlineRequired =
@@ -132,6 +134,11 @@ class InstaremTextField extends Component {
               {...this.props}
               labelTextStyle={[styles.text, textStyle]}
               style={[styles.text, textStyle]}
+              labelPadding={!isFloating ? 0 : labelPadding || 4}
+              labelHeight={!isFloating ? 0 : labelHeight || 32}
+              inputContainerPadding={
+                !isFloating ? 0 : inputContainerPadding || 8
+              }
               titleTextStyle={[styles.descriptionStyle, descriptionStyle]}
               label={isFloating ? placeholder || '' : null}
               textColor={textColor || theme.TextField.textColor}
@@ -153,8 +160,7 @@ class InstaremTextField extends Component {
               multiline={multiline}
               numberOfLines={multiline ? numberOfLines : 1}
               returnKeyType={returnKeyType}
-              // onChangeText={this.onTextChanged.bind(this)}
-              onChangeText={text => this.setState({ text })}
+              onChangeText={this.onTextChanged.bind(this)}
               responsive={false}
               blurOnSubmit={false}
               autoCapitalize='none'
@@ -272,12 +278,8 @@ class InstaremTextField extends Component {
   };
 
   getRightSideClearButton = () => {
-    // const {value} = this.props;
-    // const textFieldNotEmpty = value && value !== '';
-
-    const { text } = this.state;
-    const textFieldNotEmpty = text && text !== '';
-
+    const { value } = this.props;
+    const textFieldNotEmpty = value && value !== '';
     if (this.props.showClearButton && textFieldNotEmpty) {
       let clearButtonSource = this.props.clearButtonImage || cancelIcon;
 
@@ -295,11 +297,8 @@ class InstaremTextField extends Component {
   };
 
   getRightSideShowButton = () => {
-    // const {value} = this.props;
-    // const textFieldNotEmpty = value && value !== '';
-
-    const { text } = this.state;
-    const textFieldNotEmpty = text && text !== '';
+    const { value } = this.props;
+    const textFieldNotEmpty = value && value !== '';
 
     if (this.props.showShowHideButton && textFieldNotEmpty) {
       let hideButtonSource = this.props.hideButtonImage || hideButton;
