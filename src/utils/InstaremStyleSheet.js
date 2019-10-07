@@ -237,6 +237,19 @@ export const Themes = {
       primaryTickColor: Colors.blueGradientMid,
       secondaryTickColor: Colors.blueGradientMid,
       secondaryTickBackgroundColor: Colors.blueGradientMid
+    },
+    StreamInputField: {
+      backgroundColor: Colors.instaremLightestGray,
+      activeBackgroundColor: Colors.blueGradientMid,
+      borderColor: Colors.grayShadeText,
+      activeBorderColor: Colors.blueGradientMid,
+      placeholderTextColor: Colors.grayShadeText,
+      textColor: Colors.blueGradientMid,
+      secondaryTextColor: Colors.instaremWhite
+    },
+    AttributedText: {
+      textColor: Colors.blueGray,
+      attributedTextColor: Colors.blueGradientMid
     }
   },
 
@@ -314,6 +327,19 @@ export const Themes = {
       primaryTickColor: Colors.blueGradientMid,
       secondaryTickColor: Colors.blueGradientMid,
       secondaryTickBackgroundColor: Colors.blueGradientMid
+    },
+    StreamInputField: {
+      backgroundColor: Colors.instaremLightestGray,
+      activeBackgroundColor: Colors.blueGradientMid,
+      borderColor: Colors.grayShadeText,
+      activeBorderColor: Colors.blueGradientMid,
+      placeholderTextColor: Colors.grayShadeText,
+      textColor: Colors.purpleMild,
+      secondaryTextColor: Colors.instaremWhite
+    },
+    AttributedText: {
+      textColor: Colors.blueGray,
+      attributedTextColor: Colors.blueGradientMid
     }
   }
 };

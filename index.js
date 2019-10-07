@@ -4,6 +4,8 @@ import InstaremButton from './src/InstaremButton';
 import InstaremCircleWithTick from './src/InstaremCircleWithTick';
 import InstaremOverlay from './src/InstaremOverlay';
 import InstaremAlert from './src/InstaremAlert';
+import InstaremAttributedText from './src/InstaremAttributedText';
+import InstaremStreamInputField from './src/InstaremStreamInputField';
 
 export {
   InstaremTextField,
@@ -11,5 +13,7 @@ export {
   InstaremButton,
   InstaremCircleWithTick,
   InstaremOverlay,
-  InstaremAlert
+  InstaremAlert,
+  InstaremAttributedText,
+  InstaremStreamInputField
 };

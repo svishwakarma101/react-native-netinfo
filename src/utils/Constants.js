@@ -30,7 +30,8 @@ export const TEXTFIELD_TYPES = {
 };
 export const TEXTFIELD_SHAPES = {
   rounded: 'rounded',
-  rectangular: 'rectangular'
+  rectangular: 'rectangular',
+  roundedEdge: 'roundedEdge'
 };
 
 export const CIRCLE_SIZES = {
@@ -43,4 +44,12 @@ export const TEXTFIELD_UNDERLINESTYLE = {
   none: 'none',
   textMatch: 'textMatch',
   custom: 'custom'
+};
+
+export const STREAM_INPUT_FIELD_TYPES = {
+  default: 'default',
+  underline: 'underline',
+  solid: 'solid',
+  boxed: 'boxed',
+  solidBoxed: 'solidBoxed'
 };
