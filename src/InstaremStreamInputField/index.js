@@ -10,7 +10,7 @@ import { Colors } from '../utils/InstaremStyleSheet';
 
 class InstaremStreamInputField extends React.Component {
   static propTypes = {
-    theme: PropTypes.objecvt,
+    theme: PropTypes.object,
     length: PropTypes.number,
     style: PropTypes.shape({
       ...ViewPropTypes.style
@@ -21,7 +21,8 @@ class InstaremStreamInputField extends React.Component {
     inputBoxType: PropTypes.oneOf(Object.keys(STREAM_INPUT_FIELD_TYPES)),
     inputBoxShape: PropTypes.oneOf(Object.keys(TEXTFIELD_SHAPES)),
     inputMaxLength: PropTypes.number,
-    keyboardType: PropTypes.string
+    keyboardType: PropTypes.string,
+    secureTextEntry: PropTypes.bool
   };
 
   state = { value: [], selectedIndex: 0 };
@@ -30,7 +31,7 @@ class InstaremStreamInputField extends React.Component {
   static defaultProps = {
     theme: Theme,
     length: 4,
-    inputBoxShape: 'underline',
+    inputBoxType: 'underline',
     inputMaxLength: 1,
     keyboardType: 'numeric'
   };

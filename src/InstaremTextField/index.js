@@ -86,7 +86,7 @@ class InstaremTextField extends Component {
     autoFocus: true,
     placeholderColor: Theme.TextField.placeholderTextColor,
     showClearButton: false,
-    showShowHideButton: true,
+    showShowHideButton: false,
     leftAccessoryImage: {
       source: '',
       resizeMode: 'center'
@@ -140,7 +140,7 @@ class InstaremTextField extends Component {
                 !isFloating ? 0 : inputContainerPadding || 8
               }
               titleTextStyle={[styles.descriptionStyle, descriptionStyle]}
-              label={isFloating ? placeholder || '' : null}
+              label={isFloating ? placeholder || '' : ''}
               textColor={textColor || theme.TextField.textColor}
               tintColor={textColor || theme.TextField.placeholderTextColor}
               baseColor={
@@ -165,7 +165,7 @@ class InstaremTextField extends Component {
               blurOnSubmit={false}
               autoCapitalize='none'
               autoCorrect={false}
-              autoComplete={false}
+              autoCompleteType={'off'}
               keyboardType={'numeric'}
               value={this.state.text}
               maxLength={this.getMaxLength(this.props.type)}

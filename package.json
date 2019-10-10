@@ -16,7 +16,7 @@
   "devDependencies": {
     "metro-react-native-babel-preset": "0.51.1"
   },
-  "dependencies": {
+  "peerDependencies": {
     "prop-types": "15.6.2",
     "react-native-linear-gradient": "2.5.4",
     "react-native-snap-carousel": "3.8.0",

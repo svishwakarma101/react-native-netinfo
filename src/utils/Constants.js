@@ -53,3 +53,7 @@ export const STREAM_INPUT_FIELD_TYPES = {
   boxed: 'boxed',
   solidBoxed: 'solidBoxed'
 };
+export const PAGINATION_DOT_POSITION = {
+  top: 'top',
+  bottom: 'bottom'
+};

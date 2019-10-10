@@ -4,7 +4,10 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 const deviceWidth = Dimensions.get('window').width;
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import renderIf from '../utils/InstaremRenderIf';
-import { APPLIED_THEME as Theme } from '../utils/Constants';
+import {
+  APPLIED_THEME as Theme,
+  PAGINATION_DOT_POSITION
+} from '../utils/Constants';
 
 export default class InstaremSwiper extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ export default class InstaremSwiper extends Component {
 
   static propTypes = {
     theme: PropTypes.object,
+    pageIndicatorPosition: PropTypes.string,
     startingIndex: PropTypes.number,
     pageIndicator: PropTypes.element,
     pageIndicatorTintColor: PropTypes.string,
@@ -40,6 +44,7 @@ export default class InstaremSwiper extends Component {
 
   static defaultProps = {
     theme: Theme,
+    pageIndicatorPosition: PAGINATION_DOT_POSITION.bottom,
     startingIndex: 0,
     swiperWidth: deviceWidth,
     pageIndicator: null,
@@ -95,13 +100,47 @@ export default class InstaremSwiper extends Component {
       inactiveSlideScale,
       inactiveDotScale,
       inactiveSlideOpacity,
-      inactiveDotOpacity
+      inactiveDotOpacity,
+      isIndicatorRequired,
+      pageIndicatorPosition
     } = this.props;
 
     let itemWidth = cardWidth ? cardWidth : horizontal ? 100 : 300;
 
     return (
       <Fragment>
+        {renderIf(
+          isIndicatorRequired &&
+            pageIndicatorPosition === PAGINATION_DOT_POSITION.top
+        )(
+          <View style={styles.indicatorContainer}>
+            <Pagination
+              dotsLength={dataSource.length}
+              activeDotIndex={
+                this.state.firstLoad ? startingIndex : this.state.activeSlide
+              }
+              containerStyle={
+                paginationStyle || styles.paginationContainerStyle
+              }
+              dotElement={currentPageIndicator}
+              dotColor={
+                currentPageIndicatorTintColor ||
+                theme.Swiper.currentPageIndicatorTintColor
+              }
+              dotStyle={currentPageIndicatorStyle || styles.indicator}
+              inactiveDotElement={pageIndicator}
+              inactiveDotColor={
+                pageIndicatorTintColor || theme.Swiper.pageIndicatorTintColor
+              }
+              inactiveDotStyle={pageIndicatorStyle || styles.indicator}
+              inactiveDotOpacity={inactiveDotOpacity}
+              inactiveDotScale={inactiveDotScale}
+              carouselRef={this.carouselReference}
+              tappableDots={!!this.carouselReference}
+            />
+          </View>
+        )}
+
         <View
           style={[
             horizontal ? styles.containerHorizontal : styles.container,
@@ -125,14 +164,25 @@ export default class InstaremSwiper extends Component {
             containerStyle={styles.swiperContainer}
           />
         </View>
-        {renderIf(this.props.isIndicatorRequired)(
-          <View style={styles.indicatorContainer}>
+
+        {renderIf(
+          isIndicatorRequired &&
+            pageIndicatorPosition === PAGINATION_DOT_POSITION.bottom
+        )(
+          <View
+            style={StyleSheet.flatten([
+              styles.indicatorContainer,
+              styles.indicatorContainerMargin
+            ])}
+          >
             <Pagination
               dotsLength={dataSource.length}
               activeDotIndex={
                 this.state.firstLoad ? startingIndex : this.state.activeSlide
               }
-              containerStyle={paginationStyle || { width: 10 }}
+              containerStyle={
+                paginationStyle || styles.paginationContainerStyle
+              }
               dotElement={currentPageIndicator}
               dotColor={
                 currentPageIndicatorTintColor ||
@@ -176,7 +226,9 @@ const styles = StyleSheet.create({
   },
   indicatorContainer: {
     alignItems: 'center',
-    height: 40,
+    height: 40
+  },
+  indicatorContainerMargin: {
     marginTop: -30
   },
   indicator: {
@@ -189,13 +241,15 @@ const styles = StyleSheet.create({
   itemContainer: {
     height: 260,
     width: 170,
-    alignItems: 'center',
-    backgroundColor: 'yellow'
+    alignItems: 'center'
   },
   itemContainerHorizontal: {
     margin: 0,
     height: 170,
     width: 260,
     alignItems: 'center'
+  },
+  paginationContainerStyle: {
+    width: 10
   }
 });
