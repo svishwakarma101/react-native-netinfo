@@ -83,7 +83,7 @@ class InstaremTextField extends Component {
     editable: true,
     autoCorrect: false,
     returnKeyType: 'done',
-    autoFocus: true,
+    autoFocus: false,
     placeholderColor: Theme.TextField.placeholderTextColor,
     showClearButton: false,
     showShowHideButton: false,
@@ -166,7 +166,7 @@ class InstaremTextField extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               autoCompleteType={'off'}
-              keyboardType={'numeric'}
+              // keyboardType={'numeric'}
               value={this.state.text}
               maxLength={this.getMaxLength(this.props.type)}
             >
