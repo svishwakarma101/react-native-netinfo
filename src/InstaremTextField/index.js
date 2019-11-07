@@ -21,6 +21,8 @@ import showButton from '../../assets/images/button/hideIconGray.png';
 import hideButton from '../../assets/images/button/hideIconGray.png';
 
 class InstaremTextField extends Component {
+  inputRef = React.createRef();
+
   static propTypes = {
     theme: PropTypes.object,
     type: PropTypes.oneOf(TEXTFIELD_TYPES),
@@ -36,6 +38,7 @@ class InstaremTextField extends Component {
       ...ViewPropTypes.style
     }),
     textColor: PropTypes.string,
+    floatingLabel: PropTypes.string,
     placeholder: PropTypes.string,
     backgroundColor: PropTypes.string,
     borderColor: PropTypes.string,
@@ -96,15 +99,16 @@ class InstaremTextField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
       autoFocusEnabled: this.props.autoFocus || false,
-      shouldEncryptedTextBeVisible: false
+      shouldEncryptedTextBeVisible: false,
+      showPlaceHolderForFloating: false
     };
   }
 
   render() {
     const {
       theme,
+      floatingLabel,
       placeholder,
       placeholderColor,
       multiline,
@@ -140,35 +144,40 @@ class InstaremTextField extends Component {
                 !isFloating ? 0 : inputContainerPadding || 8
               }
               titleTextStyle={[styles.descriptionStyle, descriptionStyle]}
-              label={isFloating ? placeholder || '' : ''}
+              label={isFloating ? floatingLabel || '' : null}
               textColor={textColor || theme.TextField.textColor}
               tintColor={textColor || theme.TextField.placeholderTextColor}
               baseColor={
                 placeholderColor || theme.TextField.placeholderTextColor
               }
-              lineWidth={isTintedUnderlineRequired ? 0.2 : 0}
-              activeLineWidth={isTintedUnderlineRequired ? 0.2 : 0}
-              placeholder={!isFloating ? placeholder || '' : null}
+              lineWidth={isTintedUnderlineRequired ? 1 : 0}
+              activeLineWidth={isTintedUnderlineRequired ? 1 : 0}
+              placeholder={
+                !isFloating ||
+                (isFloating && this.state.showPlaceHolderForFloating)
+                  ? placeholder
+                  : null
+              }
               error={errorMessage || null}
               title={descriptionMessage || null}
               renderAccessory={() => this.getAccessoryView()}
-              ref='textInput'
-              // autoFocus={this.state.autoFocusEnabled}
-              // clearTextOnFocus={false}
+              ref={this.inputRef}
               placeholderTextColor={!isFloating ? placeholderColor || '' : null}
               underlineColorAndroid='transparent'
               multiline={multiline}
               numberOfLines={multiline ? numberOfLines : 1}
               returnKeyType={returnKeyType}
               onChangeText={this.onTextChanged.bind(this)}
+              onFocus={this.onFocus.bind(this)}
+              onBlur={this.onBlur.bind(this)}
               responsive={false}
               blurOnSubmit={false}
               autoCapitalize='none'
               autoCorrect={false}
               autoCompleteType={'off'}
-              // keyboardType={'numeric'}
-              value={this.state.text}
-              maxLength={this.getMaxLength(this.props.type)}
+              maxLength={
+                this.props.maxLength || this.getMaxLength(this.props.type)
+              }
             >
               {this.props.children}
             </TextField>
@@ -214,8 +223,8 @@ class InstaremTextField extends Component {
         (!singleSeperatorRequired && textTemp.length === 5)
       ) {
         if (
-          this.state.text.length === 1 ||
-          (!singleSeperatorRequired && this.state.text.length === 4)
+          this.props.value.length === 1 ||
+          (!singleSeperatorRequired && this.props.value.length === 4)
         ) {
           textTemp += '/';
         } else {
@@ -223,8 +232,7 @@ class InstaremTextField extends Component {
         }
       }
     }
-
-    this.setState({ text: textTemp });
+    return textTemp;
   };
 
   getTextFieldStyle = () => {
@@ -321,15 +329,30 @@ class InstaremTextField extends Component {
     return null;
   };
 
+  onFocus = () => {
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    } else {
+      this.setState({ showPlaceHolderForFloating: true });
+    }
+  };
+  onBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    } else {
+      this.setState({ showPlaceHolderForFloating: false });
+    }
+  };
+
   onTextChanged(text) {
-    this.handleChange(text);
+    let refinedText = this.handleChange(text);
     if (this.props.onChangeText) {
-      this.props.onChangeText(text);
+      this.props.onChangeText(refinedText);
     }
   }
 
   clearText = () => {
-    this.refs.textInput.clear();
+    this.inputRef.current.clear();
     if (this.props.onChangeText) {
       this.props.onChangeText('');
     }
@@ -396,22 +419,8 @@ const styles = StyleSheet.create({
   underline: {
     flex: 0.01
   },
-  textOffset: {
-    marginHorizontal: 2
-  },
   image: {
     margin: 10
-  },
-  showLabel: {
-    flex: 0,
-    justifyContent: 'center',
-    textAlign: 'right',
-    margin: 5,
-    marginRight: 10,
-    fontSize: FontSize.Small,
-    fontFamily: Fonts.Light,
-    color: Colors.grayShadeText,
-    backgroundColor: 'transparent'
   }
 });
 
