@@ -45,9 +45,7 @@ export default class InstaremButton extends Component {
     super(props);
     this.state = {
       buttonPressedIn: false,
-      isDisabled: this.props.disabled || false,
-      buttonType: this.props.buttonType || 'default',
-      buttonShape: this.props.buttonShape || 'default'
+      isDisabled: this.props.disabled || false
     };
   }
 
@@ -56,7 +54,7 @@ export default class InstaremButton extends Component {
     let buttonShape;
     const isGradient = this.props.buttonType === BUTTON_TYPES.gradient;
 
-    switch (this.state.buttonType) {
+    switch (this.props.buttonType) {
       case BUTTON_TYPES.primary:
         buttonStyle = ButtonStyles.primaryButton;
         break;
@@ -74,7 +72,7 @@ export default class InstaremButton extends Component {
         break;
     }
 
-    switch (this.state.buttonShape) {
+    switch (this.props.buttonShape) {
       case BUTTON_SHAPES.square:
         buttonShape = ButtonStyles.squareButton;
         break;
@@ -108,14 +106,14 @@ export default class InstaremButton extends Component {
   }
 
   getThemeForButtonType() {
-    let { theme } = this.props;
-    if (this.state.buttonType === BUTTON_TYPES.primary) {
+    let { theme, buttonType } = this.props;
+    if (buttonType === BUTTON_TYPES.primary) {
       return theme.PrimaryButton;
-    } else if (this.state.buttonType === BUTTON_TYPES.secondary) {
+    } else if (buttonType === BUTTON_TYPES.secondary) {
       return theme.SecondaryButton;
-    } else if (this.state.buttonType === BUTTON_TYPES.disabled) {
+    } else if (buttonType === BUTTON_TYPES.disabled) {
       return theme.DisabledButton;
-    } else if (this.state.buttonType === BUTTON_TYPES.gradient) {
+    } else if (buttonType === BUTTON_TYPES.gradient) {
       return theme.GradientButton;
     }
     return theme.DefaultButton;
