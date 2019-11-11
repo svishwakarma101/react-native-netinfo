@@ -6,6 +6,8 @@ import InstaremOverlay from './src/InstaremOverlay';
 import InstaremAlert from './src/InstaremAlert';
 import InstaremAttributedText from './src/InstaremAttributedText';
 import InstaremStreamInputField from './src/InstaremStreamInputField';
+import InstaremSnackBar from './src/InstaremSnackBar';
+import InstaremNetworkSnackBar from './src/InstaremSnackBar/InstaremNetworkSnackBar';
 
 export {
   InstaremTextField,
@@ -15,5 +17,7 @@ export {
   InstaremOverlay,
   InstaremAlert,
   InstaremAttributedText,
-  InstaremStreamInputField
+  InstaremStreamInputField,
+  InstaremSnackBar,
+  InstaremNetworkSnackBar
 };

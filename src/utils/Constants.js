@@ -5,6 +5,7 @@ export const BUTTON_TYPES = {
   gradient: 'gradient',
   primary: 'primary',
   secondary: 'secondary',
+  transparent: 'transparent',
   disabled: 'disabled'
 };
 export const BUTTON_SHAPES = {

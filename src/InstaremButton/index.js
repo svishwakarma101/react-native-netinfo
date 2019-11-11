@@ -67,6 +67,9 @@ export default class InstaremButton extends Component {
       case BUTTON_TYPES.gradient:
         buttonStyle = ButtonStyles.gradientButton;
         break;
+      case BUTTON_TYPES.transparent:
+        buttonStyle = ButtonStyles.transparentButton;
+        break;
       default:
         buttonStyle = ButtonStyles.defaultButtonType;
         break;
@@ -115,6 +118,8 @@ export default class InstaremButton extends Component {
       return theme.DisabledButton;
     } else if (buttonType === BUTTON_TYPES.gradient) {
       return theme.GradientButton;
+    } else if (buttonType === BUTTON_TYPES.transparent) {
+      return theme.TransparentButton;
     }
     return theme.DefaultButton;
   }
@@ -276,6 +281,15 @@ const ButtonStyles = StyleSheet.create({
     height: 60,
     backgroundColor: Theme.GradientButton.backgroundColorGradientStart,
     borderRadius: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  transparentButton: {
+    flex: 0,
+    backgroundColor: Theme.TransparentButton.backgroundColor,
+    borderWidth: 0,
+    borderColor: Theme.TransparentButton.borderColor,
+    borderRadius: 0,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },

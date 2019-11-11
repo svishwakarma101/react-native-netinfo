@@ -196,6 +196,14 @@ export const Themes = {
       activeBackgroundColor: Colors.buttonBgColor,
       activeBorderColor: Colors.buttonBgColor
     },
+    TransparentButton: {
+      textColor: Colors.buttonBgColor,
+      backgroundColor: Colors.transparent,
+      borderColor: Colors.transparent,
+      activeTextColor: Colors.buttonBgColor,
+      activeBackgroundColor: Colors.transparent,
+      activeBorderColor: Colors.transparent
+    },
     DefaultButton: {
       textColor: Colors.instaremDenimBlue,
       backgroundColor: Colors.instaremWhite,
@@ -204,7 +212,6 @@ export const Themes = {
       activeBackgroundColor: Colors.instaremWhite,
       activeBorderColor: Colors.instaremWhite
     },
-
     Overlay: {
       backgroundColor: Colors.cardOverlay
     },
@@ -250,6 +257,17 @@ export const Themes = {
     AttributedText: {
       textColor: Colors.blueGray,
       attributedTextColor: Colors.blueGradientMid
+    },
+    SnackBar: {
+      backgroundColor: Colors.instaremWhite,
+      buttonBackgroundColor: Colors.blueGradientMid,
+      buttonTitleColor: Colors.instaremWhite,
+      textColor: Colors.blueGradientMid,
+      borderColor: Colors.blueGradientMid,
+      shadowColor: Colors.instaremLightGray,
+      nativeBackgroundColor: Colors.grayDark,
+      nativeTextColor: Colors.instaremWhite,
+      nativeButtonTitleColor: Colors.instaremOrange
     }
   },
 
@@ -286,6 +304,14 @@ export const Themes = {
       activeTextColor: Colors.instaremWhite,
       activeBackgroundColor: Colors.buttonBgColor,
       activeBorderColor: Colors.buttonBgColor
+    },
+    TransparentButton: {
+      textColor: Colors.buttonBgColor,
+      backgroundColor: Colors.transparent,
+      borderColor: Colors.transparent,
+      activeTextColor: Colors.buttonBgColor,
+      activeBackgroundColor: Colors.transparent,
+      activeBorderColor: Colors.transparent
     },
     DefaultButton: {
       textColor: Colors.instaremWhite,
@@ -340,6 +366,17 @@ export const Themes = {
     AttributedText: {
       textColor: Colors.blueGray,
       attributedTextColor: Colors.blueGradientMid
+    },
+    SnackBar: {
+      backgroundColor: Colors.instaremWhite,
+      buttonBackgroundColor: Colors.blueGradientMid,
+      buttonTitleColor: Colors.instaremWhite,
+      textColor: Colors.blueGradientMid,
+      borderColor: Colors.blueGradientMid,
+      shadowColor: Colors.instaremLightGray,
+      nativeBackgroundColor: Colors.grayDark,
+      nativeTextColor: Colors.instaremWhite,
+      nativeButtonTitleColor: Colors.instaremOrange
     }
   }
 };
