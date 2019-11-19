@@ -1,6 +1,6 @@
 {
   "name": "instarem-uicomponents-react-native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Instarem's UI Component Library for React-Native",
   "main": "index.js",
   "scripts": {
