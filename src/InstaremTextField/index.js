@@ -358,6 +358,10 @@ class InstaremTextField extends Component {
     }
   };
 
+  focus = () => {
+    this.inputRef.current.focus();
+  };
+
   showHideSecureText = () => {
     this.setState({
       shouldEncryptedTextBeVisible: !this.state.shouldEncryptedTextBeVisible

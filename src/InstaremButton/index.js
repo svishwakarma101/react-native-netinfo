@@ -314,7 +314,6 @@ const ButtonStyles = StyleSheet.create({
     borderRadius: 0
   },
   title: {
-    marginTop: Platform.OS == 'ios' ? 3 : 0,
     textAlign: 'center',
     fontFamily: Fonts.Heavy,
     fontSize: FontSize.Large2,
