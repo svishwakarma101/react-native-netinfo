@@ -123,9 +123,11 @@ class InstaremTextField extends Component {
       textStyle,
       labelPadding,
       labelHeight,
-      inputContainerPadding
+      inputContainerPadding,
+      input: {value: preProcessedValue},
     } = this.props;
 
+    const value = preProcessedValue && preProcessedValue.toString();
     let isTintedUnderlineRequired =
       underlineType === TEXTFIELD_UNDERLINESTYLE.textMatch &&
       this.props.shape === TEXTFIELD_SHAPES.rectangular;
@@ -168,6 +170,7 @@ class InstaremTextField extends Component {
               numberOfLines={multiline ? numberOfLines : 1}
               returnKeyType={returnKeyType}
               onChangeText={this.onTextChanged.bind(this)}
+              value={value}
               onFocus={this.onFocus.bind(this)}
               onBlur={this.onBlur.bind(this)}
               responsive={false}
@@ -345,7 +348,9 @@ class InstaremTextField extends Component {
   };
 
   onTextChanged(text) {
+    const {input: {onChange}} = this.props;
     let refinedText = this.handleChange(text);
+    onChange(text);
     if (this.props.onChangeText) {
       this.props.onChangeText(refinedText);
     }
