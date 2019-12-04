@@ -27,6 +27,7 @@ class InstaremStreamInputField extends React.Component {
 
   state = { value: [], selectedIndex: 0 };
   valueTextInput = [];
+  isEditing = true;
 
   static defaultProps = {
     theme: Theme,
@@ -36,7 +37,12 @@ class InstaremStreamInputField extends React.Component {
     keyboardType: 'numeric'
   };
   componentDidMount() {
+    this.isEditing = true;
     this.valueTextInput[0].focus();
+  }
+
+  isEditing() {
+    return this.isEditing;
   }
 
   renderInputs() {
@@ -102,22 +108,28 @@ class InstaremStreamInputField extends React.Component {
   }
 
   onFocus = (index, inputValue) => {
+    this.isEditing = true;
     this.setState({ selectedIndex: index });
   };
 
   focusNext(index, inputValue) {
+
+    const value = this.state.value;
+    value[index] = inputValue;
+    this.setState({ value });    
     if (index < this.valueTextInput.length - 1 && inputValue) {
+      if (this.props.onStreamvalueChange) {
+        this.props.onStreamvalueChange(value.join(''));
+      }
       this.valueTextInput[index + 1].focus();
     }
     if (index === this.valueTextInput.length - 1) {
+      if (this.props.getstreamValue) {
+        this.props.getstreamValue(value.join(''));
+      }
       this.valueTextInput[index].blur();
-    }
-    const value = this.state.value;
-    value[index] = inputValue;
-    this.setState({ value });
-    if (this.props.getOtp) {
-      this.props.getOtp(inputValue.join(''));
-    }
+      this.isEditing = false;
+    }    
   }
 
   getInputStyle = () => {
