@@ -100,7 +100,7 @@ class InstaremTextField extends Component {
     super(props);
     this.state = {
       autoFocusEnabled: this.props.autoFocus || false,
-      shouldEncryptedTextBeVisible: false,
+      shouldEncryptedTextBeVisible: this.props.isSecureText || false,
       showPlaceHolderForFloating: false
     };
   }
@@ -167,6 +167,7 @@ class InstaremTextField extends Component {
               placeholderTextColor={!isFloating ? placeholderColor || '' : null}
               underlineColorAndroid='transparent'
               multiline={multiline}
+              secureTextEntry={this.state.shouldEncryptedTextBeVisible}
               numberOfLines={multiline ? numberOfLines : 1}
               returnKeyType={returnKeyType}
               onChangeText={this.onTextChanged.bind(this)}
@@ -279,11 +280,18 @@ class InstaremTextField extends Component {
   }
 
   getAccessoryView = () => {
-    if (this.props.showClearButton) {
+
+    if (this.props.showClearButton && this.props.showShowHideButton) {
+      return <View style={{flexDirection: 'row'}}>
+        {this.getRightSideShowButton()}
+        {this.getRightSideClearButton()}        
+      </View>
+    } else if (this.props.showClearButton) {
       return this.getRightSideClearButton();
     } else if (this.props.showShowHideButton) {
       return this.getRightSideShowButton();
-    } else {
+    }     
+    else {
       return null;
     }
   };
@@ -295,7 +303,7 @@ class InstaremTextField extends Component {
       let clearButtonSource = this.props.clearButtonImage || cancelIcon;
 
       return (
-        <TouchableOpacity onPress={this.clearText}>
+        <TouchableOpacity style={[styles.rightAccessory, this.props.rightAccessoryStyle]} onPress={this.clearText}>
           <Image
             style={[styles.image, this.props.clearButtonStyle]}
             source={clearButtonSource}
@@ -316,7 +324,7 @@ class InstaremTextField extends Component {
       let showButtonSource = this.props.showButtonImage || showButton;
 
       return (
-        <TouchableOpacity onPress={this.showHideSecureText}>
+        <TouchableOpacity style={[styles.rightAccessory, this.props.rightAccessoryStyle]} onPress={this.showHideSecureText}>
           <Image
             style={[styles.image, this.props.clearButtonStyle]}
             source={
@@ -357,10 +365,12 @@ class InstaremTextField extends Component {
   }
 
   clearText = () => {
-    this.inputRef.current.clear();
-    if (this.props.onChangeText) {
-      this.props.onChangeText('');
-    }
+    if (this.props.showClearButton !== 1) { // If the entered text is valid then avoid the text clear action. 
+      this.inputRef.current.clear();
+      if (this.props.onChangeText) {
+        this.props.onChangeText('');
+      }
+    }        
   };
 
   focus = () => {
@@ -429,7 +439,13 @@ const styles = StyleSheet.create({
     flex: 0.01
   },
   image: {
-    margin: 10
+    marginTop: 0,
+  },
+  rightAccessory: {
+    width: 40,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
