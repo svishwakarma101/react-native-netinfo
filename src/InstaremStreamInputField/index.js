@@ -125,7 +125,7 @@ class InstaremStreamInputField extends React.Component {
     }
     if (index === this.valueTextInput.length - 1) {
       if (this.props.getstreamValue) {
-        this.props.getstreamValue(value.join(''));
+        this.props.getstreamValue(value.join(''), this);
       }
       this.valueTextInput[index].blur();
       this.isEditing = false;
