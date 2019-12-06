@@ -69,7 +69,7 @@ class InstaremStreamInputField extends React.Component {
           inputShape,
           (index === this.state.selectedIndex ||
             (this.state.value[index] && this.state.value[index] !== '')) && {
-            borderColor: Theme.StreamInputField.activeBorderColor
+            borderColor: theme.StreamInputField.activeBorderColor
           },
           style
         ]}
@@ -152,15 +152,15 @@ class InstaremStreamInputField extends React.Component {
         inputStyle = {
           ...inputStyle,
           backgroundColor: Colors.transparent,
-          borderColor: Theme.StreamInputField.borderColor
+          borderColor: theme.StreamInputField.borderColor
         };
         break;
       case STREAM_INPUT_FIELD_TYPES.solidBoxed:
         inputStyle = styles.solidBoxed;
         inputStyle = {
           ...inputStyle,
-          backgroundColor: Theme.StreamInputField.backgroundColor,
-          borderColor: Theme.StreamInputField.borderColor
+          backgroundColor: theme.StreamInputField.backgroundColor,
+          borderColor: theme.StreamInputField.borderColor
         };
         break;
       default:
