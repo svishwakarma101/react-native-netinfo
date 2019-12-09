@@ -93,7 +93,8 @@ class InstaremTextField extends Component {
     leftAccessoryImage: {
       source: '',
       resizeMode: 'center'
-    }
+    },
+    blurOnSubmit:false
   };
 
   constructor(props) {
@@ -124,6 +125,7 @@ class InstaremTextField extends Component {
       labelPadding,
       labelHeight,
       inputContainerPadding,
+      blurOnSubmit,
       input: {value: preProcessedValue},
     } = this.props;
 
@@ -174,7 +176,7 @@ class InstaremTextField extends Component {
               onFocus={this.onFocus.bind(this)}
               onBlur={this.onBlur.bind(this)}
               responsive={false}
-              blurOnSubmit={false}
+              blurOnSubmit={blurOnSubmit}
               autoCapitalize='none'
               autoCorrect={false}
               autoCompleteType={'off'}
