@@ -38,6 +38,9 @@ class InstaremStreamInputField extends React.Component {
   };
   componentDidMount() {
     this.isEditing = true;
+    setTimeout(() => {
+      this.valueTextInput[0].focus();
+    }, 0);
   }
 
   isEditing() {
@@ -124,7 +127,7 @@ class InstaremStreamInputField extends React.Component {
     }
     if (index === this.valueTextInput.length - 1) {
       if (this.props.getstreamValue) {
-        this.props.getstreamValue(value.join(''));
+        this.props.getstreamValue(value.join(''), this);
       }
       this.valueTextInput[index].blur();
       this.isEditing = false;
