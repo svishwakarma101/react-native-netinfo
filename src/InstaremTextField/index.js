@@ -368,12 +368,16 @@ class InstaremTextField extends Component {
 
   clearText = () => {
     if (this.props.showClearButton !== 1) { // If the entered text is valid then avoid the text clear action. 
-      this.inputRef.current.clear();
+      this.clear()
       if (this.props.onChangeText) {
         this.props.onChangeText('');
       }
     }        
   };
+
+  clear = () => {
+    this.inputRef.current.clear();
+  }
 
   focus = () => {
     this.inputRef.current.focus();
