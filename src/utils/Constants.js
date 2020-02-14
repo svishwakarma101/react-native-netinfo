@@ -58,3 +58,7 @@ export const PAGINATION_DOT_POSITION = {
   top: 'top',
   bottom: 'bottom'
 };
+
+export const SNACK_BAR_ACTION = {
+  HIDE_SNACK_BAR: HIDE_SNACK_BAR
+}

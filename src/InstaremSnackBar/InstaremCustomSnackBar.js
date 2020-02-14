@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getAdjustedFontSize } from '../utils/Fonts';
 import { Fonts, FontSize } from '../utils/InstaremStyleSheet';
 import InstaremButton from '../InstaremButton';
-import { BUTTON_TYPES, APPLIED_THEME as Themes } from '../utils/Constants';
+import { BUTTON_TYPES, APPLIED_THEME as Themes, SNACK_BAR_ACTION } from '../utils/Constants';
 
 export default class InstaremCustomSnackBar extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ export default class InstaremCustomSnackBar extends Component {
   }
 
   actionHandler = () => {
+    this.props.dispatch({type: SNACK_BAR_ACTION.HIDE_SNACK_BAR})
     const { actionHandler } = this.props;
     if (actionHandler && typeof actionHandler === 'function') {
       actionHandler();
