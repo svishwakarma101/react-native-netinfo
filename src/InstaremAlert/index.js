@@ -46,6 +46,9 @@ export default class InstaremAlert extends Component {
     description: PropTypes.string,
     customDescription: PropTypes.element,
     primaryButtonTitle: PropTypes.string,
+    primaryButtonTitleStyle: PropTypes.shape({
+      ...ViewPropTypes.style
+    }),
     primaryButtonStyle: PropTypes.shape({
       ...ViewPropTypes.style
     }),
@@ -53,6 +56,9 @@ export default class InstaremAlert extends Component {
     primaryButtonType: PropTypes.oneOf(BUTTON_TYPES),
     primaryButtonShape: PropTypes.oneOf(BUTTON_SHAPES),
     secondaryButtonTitle: PropTypes.string,
+    secondaryButtonTitleStyle: PropTypes.shape({
+      ...ViewPropTypes.style
+    }),
     secondaryButtonStyle: PropTypes.shape({
       ...ViewPropTypes.style
     }),
@@ -138,11 +144,13 @@ export default class InstaremAlert extends Component {
       isIconRequired,
       isDismissButtonRequired,
       primaryButtonTitle,
+      primaryButtonTitleStyle,
       primaryButtonStyle,
       primaryButtonType,
       primaryButtonAction,
       primaryButtonShape,
       secondaryButtonTitle,
+      secondaryButtonTitleStyle,
       secondaryButtonStyle,
       secondaryButtonType,
       secondaryButtonAction,
@@ -191,6 +199,7 @@ export default class InstaremAlert extends Component {
                 onPressIn={secondaryButtonAction}
                 // onPressOut={this.navigateToNext.bind(this)}
                 content={secondaryButtonTitle}
+                titleStyle={secondaryButtonTitleStyle}
                 style={[
                   styles.button,
                   secondaryButtonStyle,
@@ -206,6 +215,7 @@ export default class InstaremAlert extends Component {
               onPressIn={primaryButtonAction}
               // onPressOut={this.navigateToNext.bind(this)}
               content={primaryButtonTitle}
+              titleStyle={primaryButtonTitleStyle}
               style={[styles.button, primaryButtonStyle]}
             />
           </View>
