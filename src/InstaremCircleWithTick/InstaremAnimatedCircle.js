@@ -59,7 +59,7 @@ export default class InstaremAnimatedCircle extends Component {
       animatedValue:
         props.value.constructor.name === 'AnimatedValue'
           ? null
-          : new Animated.Value(props.shouldAnimateFirstValue ? 0 : props.value)
+          : props.shouldAnimateFirstValue ? new Animated.Value(0) : props.value
     };
   }
 
@@ -153,11 +153,10 @@ export default class InstaremAnimatedCircle extends Component {
     if (value.constructor.name === 'AnimatedValue') {
       return;
     }
-
     if (this.animationMethod) {
       this.animateChange(value);
-    } else {
-      this.state.animatedValue.setValue(value);
+    } else {          
+      this.state.animatedValue.setValue(value._value);
     }
   };
 
