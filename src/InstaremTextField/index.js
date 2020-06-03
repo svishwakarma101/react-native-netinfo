@@ -67,9 +67,7 @@ class InstaremTextField extends Component {
     }),
     showClearButton: PropTypes.bool,
     showShowHideButton: PropTypes.bool,
-    clearButtonStyle: PropTypes.shape({
-      ...TouchableOpacity.propTypes.style
-    }),
+    clearButtonStyle: PropTypes.shape({}),
     autoFocus: PropTypes.bool,
     clearButtonImage: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     showButtonImage: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
