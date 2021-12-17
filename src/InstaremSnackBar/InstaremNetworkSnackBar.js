@@ -9,17 +9,22 @@ export default class InstaremNetworkSnackBar extends React.Component {
   state = { position: 'bottom', isConnected: true };
 
   componentWillMount() {
-    NetInfo.isConnected.addEventListener(
-      'connectionChange',
-      this.handleConnectivityChange
-    );
+    // NetInfo.isConnected.addEventListener(
+    //   'connectionChange',
+    //   this.handleConnectivityChange
+    // );
+    this.unsubscribe = NetInfo.addEventListener(this._handleConnectivityChange)
   }
 
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-      'connectionChange',
-      this.handleConnectivityChange
-    );
+    // NetInfo.isConnected.removeEventListener(
+    //   'connectionChange',
+    //   this.handleConnectivityChange
+    // );
+    if (this.unsubscribe) {
+      this.unsubscribe()
+      this.unsubscribe = null
+    }
   }
 
   handleConnectivityChange = isConnected => {
