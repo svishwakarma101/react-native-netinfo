@@ -24,7 +24,7 @@ export default class InstaremNetworkSnackBar extends React.Component {
     if (this.unsubscribe) {
       this.unsubscribe()
       this.unsubscribe = null
-    }
+    } 
   }
 
   handleConnectivityChange = isConnected => {
