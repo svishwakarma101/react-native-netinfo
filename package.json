@@ -20,7 +20,7 @@
     "prop-types": "15.7.2",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-snap-carousel": "3.9.1",
-    "react-native-material-textfield": "0.12.0",
+    "react-native-material-textfield": "git+https://github.com/Poojapandey89/react-native-material-textfield.git",
     "@react-native-community/netinfo": "^6.0.4"
   }
 }
